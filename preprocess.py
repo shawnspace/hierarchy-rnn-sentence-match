@@ -8,7 +8,7 @@ import sys
 
 CONTEXT_WIDTH = 4
 
-input_dir = '/Users/xzhangax/mphil/WeBank/context_retrieval/data/all_data/已标注'
+input_dir = '/data/dir'
 input_file = os.path.join(input_dir, sys.argv[1])
 
 output_dir = sys.argv[2]
@@ -46,15 +46,15 @@ np.random.shuffle(corpus)
 validate,test,train = corpus[0:int(len(corpus)*0.1)], corpus[int(len(corpus)*0.1):int(len(corpus)*0.2)], corpus[int(len(corpus)*0.2):]
 
 import jieba
-word_seg_dict = '/Users/xzhangax/mphil/WeBank/data/word_seg_dict.txt'
+word_seg_dict = 'data/my_word_seg_dict.txt'
 jieba.load_userdict(word_seg_dict)
 
 stopwords = []
-with open('/Users/xzhangax/mphil/WeBank/data/stopword.txt') as stopword_file:
+with open('data/stopword.txt') as stopword_file:
     for l in stopword_file.readlines():
         stopwords.append(l.rstrip('\n'))
         
-filepath = '/Users/xzhangax/mphil/WeBank/data/stopsentences.txt'
+filepath = 'data/stopsentences.txt'
 stopsentences = []
 with open(filepath, 'r') as f:
     for l in f.readlines():
