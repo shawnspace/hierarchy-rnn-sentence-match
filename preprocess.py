@@ -8,10 +8,10 @@ import sys
 
 CONTEXT_WIDTH = 4
 
-input_dir = '/data/dir'
-input_file = os.path.join(input_dir, sys.argv[1])
+input_dir = '/data'
+input_file = os.path.join(input_dir, 'raw_data.txt')
 
-output_dir = sys.argv[2]
+output_dir = '/data'
 
 corpus = []
 with open(input_file,encoding='utf-8') as f:
@@ -46,7 +46,7 @@ np.random.shuffle(corpus)
 validate,test,train = corpus[0:int(len(corpus)*0.1)], corpus[int(len(corpus)*0.1):int(len(corpus)*0.2)], corpus[int(len(corpus)*0.2):]
 
 import jieba
-word_seg_dict = 'data/my_word_seg_dict.txt'
+word_seg_dict = 'data/word_seg_dict.txt'
 jieba.load_userdict(word_seg_dict)
 
 stopwords = []
