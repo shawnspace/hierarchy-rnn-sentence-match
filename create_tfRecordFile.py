@@ -4,12 +4,10 @@ write sentences_in_wordid to .tfRecord file
 
 raw data
 context1,context2,context3,context4,query,label\n; contexti= word1 word2 word3 or ''
-
+eg.
 data.txt (max_sen_len = 5, context_width = 4):
 id id id,id id id id,id id id,id id\tid id id id id\tlabel\n
 ,,id id id,id id\tid id id id id\tlabel\n
-
-tfrecords
 
 """
 import tensorflow as tf
