@@ -34,35 +34,5 @@ def create_input_fn(input_files: object, mode: object, batch_size: object, num_e
         return feature_map, target
     return input_fn
 
-if __name__ == "__main__":
-    features_spec = create_features_spec()
-    path = '/Users/xzhangax/PycharmProjects/HRED/data_928/test.tfrecords'
-    feature_map = tf.contrib.learn.io.read_batch_features(file_pattern=path, batch_size=1,
-                                                          features=features_spec, reader=tf.TFRecordReader,
-                                                          num_epochs=1, randomize_input=False,
-                                                          name="read_batch_features_{}".format(tf.contrib.learn.ModeKeys.TRAIN))
-
-
-    def get_feature(features, key, len_key, max_sen_len):
-        feature = features[key]
-        feature_len = tf.squeeze(features[len_key], axis=[1])  # [batch_size, 1] -> [batch_size]
-        feature_len = tf.minimum(feature_len, tf.constant(MAX_SENTENCE_LENGTH, dtype=tf.int64))
-        return feature, feature_len
-
-    contexts = []
-    contexts_len = []
-    for i in range(4):
-        context, context_len = get_feature(feature_map, 'context_{}'.format(i), 'context_len_{}'.format(i),
-                                           MAX_SENTENCE_LENGTH)
-        contexts.append(context)
-        contexts_len.append(context_len)
-    query, query_len = get_feature(feature_map, 'query', 'query_len', MAX_SENTENCE_LENGTH)
-    for c in contexts:
-        print(c)
-    for c in contexts_len:
-        print(c)
-    #print(s.run(query))
-    #print(s.run(query_len))
-    #print(s.run(feature_map.pop('label')))
 
 
